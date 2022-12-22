@@ -55,8 +55,14 @@ on the command line.
 ***********************************************************************/
 
 function eliminateType(arr) {
-  // Your code here
+  return function(type) {
+    return arr.filter(ele => typeof ele !== type)
+  }
 }
+
+const smallEliminate = eliminateType([1, 'one', 2, 'two', 3, 'three']);
+console.log(smallEliminate('number')); // ['one', 'two', 'three']
+console.log(smallEliminate('string')); // [1, 2, 3]
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
