@@ -64,7 +64,34 @@ on the command line.
 
 const VOWELS = ['a', 'e', 'i', 'o', 'u'];
 const mostFrequentVowel = function (words, counter = {}) {
-  // Your code here
+  // base case 
+
+  if (words.length === 0) {
+    let maxKey = "";
+    let keys = Object.keys(counter)
+    let maxValue = 0;
+    for (let letter of keys){
+      if( counter[letter] > maxValue){
+        maxKey = letter
+        maxValue = counter[letter]
+      }
+    }
+    return maxKey
+  }
+
+
+
+  let word = words.pop()
+  for (let letter of word){
+    if (VOWELS.includes(letter)){
+      if (letter in counter){
+        counter[letter]++
+      }else {
+        counter[letter] = 1
+      }
+    }
+  }
+  return mostFrequentVowel(words, counter)
 }
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/

@@ -33,15 +33,15 @@ on the command line.
 ***********************************************************************/
 
   function printOuterNumsFirst(nums) {
-    if (nums.length === 1) return;
+    if (nums.length === 0) return;
 
     // extract the number from the beginning if the length of the array is even
     // else, extract from the end
     let num;
     if (nums.length % 2 === 0) {
-      num = nums.pop();
-    } else {
       num = nums.shift();
+    } else {
+      num = nums.pop();
     }
 
     // print the extracted number
