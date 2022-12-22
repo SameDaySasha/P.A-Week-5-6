@@ -61,37 +61,67 @@ Run tests on just this file by typing `npm test test/03-most-frequent-vowel-spec
 on the command line.
 
 ***********************************************************************/
-
+let findLetter = (object) => {
+  let keys = Object.keys(object)
+  let highestKey = '';
+  let highestValue = 0;
+  for (let i = 0; i < keys.length; i++) {
+    let curr = keys[i]
+    if (highestValue < curr) {
+      highestKey = i
+      highestValue = curr
+    }
+  }
+  return highestKey
+}
 const VOWELS = ['a', 'e', 'i', 'o', 'u'];
 const mostFrequentVowel = function (words, counter = {}) {
-  // base case 
-
-  if (words.length === 0) {
-    let maxKey = "";
+  // base case
+  if (words.length === 0) return findLetter(counter)
+  let word = words[0]
+  for (let i = 0; i < word.length; i++) {
+    let letter = word[i]
     let keys = Object.keys(counter)
-    let maxValue = 0;
-    for (let letter of keys){
-      if( counter[letter] > maxValue){
-        maxKey = letter
-        maxValue = counter[letter]
-      }
-    }
-    return maxKey
-  }
+    if (VOWELS.includes(letter)) {
 
-
-
-  let word = words.pop()
-  for (let letter of word){
-    if (VOWELS.includes(letter)){
-      if (letter in counter){
+      if (keys.includes(letter)) {
         counter[letter]++
-      }else {
+      } else {
         counter[letter] = 1
       }
+
     }
   }
+  words.shift()
   return mostFrequentVowel(words, counter)
+  // if (words.length === 0) {
+  //   let maxKey = "";
+  //   let keys = Object.keys(counter)
+  //   let maxValue = 0;
+  //   for (let letter of keys){
+  //     if( counter[letter] > maxValue){
+  //       maxKey = letter
+  //       maxValue = counter[letter]
+  //     }
+  //   }
+  //   return maxKey
+  // }
+
+
+
+  // let word = words.pop()
+  // for (let letter of word){
+  //   if (VOWELS.includes(letter)){
+  //     if (letter in counter){
+  //       counter[letter]++
+  //     }else {
+  //       counter[letter] = 1
+  //     }
+  //   }
+  // }
+  // return mostFrequentVowel(words, counter)
+
+
 }
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
